@@ -1,0 +1,181 @@
+{
+  "name": "RSS Feed Summarizer with AI Image",
+  "description": "Demo workflow that fetches RSS feed, summarizes articles, generates summary images, and sends webhook notifications",
+  "nodes": [
+    {
+      "id": "trigger-1",
+      "type": "workflowNode",
+      "position": { "x": 100, "y": 100 },
+      "data": {
+        "label": "Manual Trigger",
+        "blockType": "trigger",
+        "inputs": {},
+        "outputs": {
+          "triggeredAt": "",
+          "userId": ""
+        },
+        "config": {}
+      }
+    },
+    {
+      "id": "webhook-1", 
+      "type": "workflowNode",
+      "position": { "x": 100, "y": 250 },
+      "data": {
+        "label": "Fetch RSS Feed",
+        "blockType": "webhook",
+        "inputs": {
+          "triggeredAt": ""
+        },
+        "outputs": {
+          "articles": []
+        },
+        "config": {
+          "url": "https://feeds.feedburner.com/TechCrunch",
+          "method": "GET",
+          "headers": {
+            "User-Agent": "PromptPilot/1.0"
+          },
+          "timeout": 30000
+        }
+      }
+    },
+    {
+      "id": "ai-text-1",
+      "type": "workflowNode", 
+      "position": { "x": 100, "y": 400 },
+      "data": {
+        "label": "Summarize Articles",
+        "blockType": "ai-text",
+        "inputs": {
+          "articles": []
+        },
+        "outputs": {
+          "summary": "",
+          "keyPoints": []
+        },
+        "config": {
+          "operation": "summarize",
+          "model": "gpt-3.5-turbo",
+          "maxTokens": 500,
+          "temperature": 0.7,
+          "maxLength": 200
+        }
+      }
+    },
+    {
+      "id": "ai-image-1",
+      "type": "workflowNode",
+      "position": { "x": 400, "y": 400 },
+      "data": {
+        "label": "Generate Summary Image", 
+        "blockType": "ai-image",
+        "inputs": {
+          "summary": ""
+        },
+        "outputs": {
+          "imageUrl": "",
+          "prompt": ""
+        },
+        "config": {
+          "operation": "generate",
+          "size": "1024x1024",
+          "quality": "standard",
+          "style": "natural",
+          "model": "dall-e-3"
+        }
+      }
+    },
+    {
+      "id": "webhook-2",
+      "type": "workflowNode",
+      "position": { "x": 250, "y": 550 },
+      "data": {
+        "label": "Send Notification Webhook",
+        "blockType": "webhook", 
+        "inputs": {
+          "summary": "",
+          "imageUrl": ""
+        },
+        "outputs": {
+          "status": 200,
+          "response": {}
+        },
+        "config": {
+          "url": "https://webhook.site/your-unique-url",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer your-token"
+          },
+          "timeout": 15000
+        }
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1-2",
+      "source": "trigger-1", 
+      "target": "webhook-1",
+      "animated": false
+    },
+    {
+      "id": "e2-3",
+      "source": "webhook-1",
+      "target": "ai-text-1", 
+      "animated": false
+    },
+    {
+      "id": "e3-4",
+      "source": "ai-text-1",
+      "target": "ai-image-1",
+      "animated": false
+    },
+    {
+      "id": "e3-5",
+      "source": "ai-text-1", 
+      "target": "webhook-2",
+      "animated": false
+    },
+    {
+      "id": "e4-5",
+      "source": "ai-image-1",
+      "target": "webhook-2",
+      "animated": false
+    }
+  ],
+  "settings": {
+    "autoSave": true,
+    "schedule": {
+      "enabled": false,
+      "cron": "0 9 * * *",
+      "timezone": "UTC"
+    },
+    "retryPolicy": {
+      "maxRetries": 3,
+      "retryDelay": 30,
+      "exponentialBackoff": true
+    },
+    "timeout": 300,
+    "maxConcurrentExecutions": 1
+  },
+  "metadata": {
+    "createdFor": "hackathon-demo",
+    "version": "1.0.0",
+    "category": "content-automation",
+    "estimatedDuration": "2-3 minutes",
+    "requiredServices": [
+      "OpenAI API",
+      "DALL-E API", 
+      "Webhook endpoint"
+    ],
+    "demoInstructions": [
+      "1. Set up your OpenAI API key in environment variables",
+      "2. Create a webhook endpoint at webhook.site for testing", 
+      "3. Replace the webhook URL in the final node configuration",
+      "4. Run the workflow and watch real-time execution",
+      "5. Check your webhook endpoint for the notification"
+    ]
+  }
+}

@@ -1,73 +1,184 @@
-# Appwrite Hacktoberfest 2025 Hackathon
+# 🧩 PromptPilot - No-Code AI Workflow Orchestrator
 
-## Table Of Contents
+[![Built for Appwrite Hacktoberfest 2025](https://img.shields.io/badge/Built%20for-Appwrite%20Hacktoberfest%202025-fd366e)](https://hacktoberfest.appwrite.io)
+[![Powered by Appwrite](https://img.shields.io/badge/Powered%20by-Appwrite-fd366e)](https://appwrite.io)
+[![Next.js](https://img.shields.io/badge/Frontend-Next.js-black)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/Language-TypeScript-blue)](https://typescriptlang.org)
 
-- [Timeline](#timeline)
-- [Prizes](#prizes)
-- [How To Submit Your Project?](#how-to-submit-your-project)
-- [Judging Criteria](#judging-criteria)
-- [Rules and Code of Conduct](#rules-and-code-of-conduct)
+> **Think "Zapier + ChatGPT" with visual workflow building capabilities, powered entirely by Appwrite!**
 
-## Timeline
+PromptPilot is a powerful no-code AI automation platform that enables users to visually design and execute multi-step AI workflows using an intuitive drag-and-drop interface.
 
-* **Start Date and Time:** Oct 1st, 2025 at 12:00 AM UTC
-* **End Date and Time:** Oct 31st, 2025 at 11:59 PM UTC
+## ✨ Features
 
-## Prizes
+### 🎨 Visual Workflow Builder
+- Drag-and-drop interface powered by React Flow
+- Real-time collaborative editing
+- Comprehensive block library (AI, webhooks, logic)
+- Visual execution with animated progress
 
-- **Top 5 projects**
-  - Appwriter swag kits
-    - Customized hoodie with GitHub username
-    - T-shirt
-    - Mouse pad
-    - Sticker sheet
+### 🤖 AI-Powered Blocks
+- **Text Operations**: Summarization, translation, sentiment analysis
+- **Image Generation**: DALL-E integration for AI-generated images  
+- **Classification**: Automated content categorization
+- **Custom Prompts**: Flexible AI operations with custom instructions
 
-## How To Submit Your Project?
-*(Watch [video tutorial on how to submit](https://youtu.be/fyQOT93O8Do))*
+### 🔗 Integration Capabilities
+- **Webhooks**: HTTP requests to external APIs
+- **Scheduling**: Cron-based automated workflow execution
+- **Real-time Updates**: Live execution monitoring
+- **Team Collaboration**: Shared workspaces and workflow libraries
 
-Follow the steps to submit your project in the hackathon:
+### 🏗️ Production-Ready Architecture
+- Comprehensive error handling and retry policies
+- Detailed execution logging and monitoring
+- Scalable infrastructure powered by Appwrite
+- Security-first design with proper authentication
 
-### Step 1: Sign up
+## 🛠️ Tech Stack
 
-- [Register](https://hacktoberfest.com/) for Hacktoberfest.
+**Frontend**
+- Next.js 14 with TypeScript
+- React Flow for visual workflow building
+- TailwindCSS with glassmorphism design
+- Framer Motion for animations
+- Zustand for state management
 
-- [Sign up](https://apwr.dev/hf2025-hackathon) for the Hackathon.
+**Backend (100% Appwrite)**
+- **Auth**: User authentication & team management
+- **Databases**: Workflows, executions, logs storage
+- **Functions**: AI operations & workflow execution engine
+- **Storage**: Generated files (images, results)
+- **Realtime**: Live updates & collaborative editing
 
-### Step 2: Add project submission to this repo
+**AI Integration**
+- OpenAI GPT models for text operations
+- DALL-E 3 for image generation
+- Extensible architecture for additional AI services
 
-- Create a new branch/fork with the same name as your project title.
+## 🚀 Quick Start
 
-- Visit the `submissions/` directory and create a copy of the `TEMPLATE_SUBMISSION.md` with the same filename as your project title.
+### Prerequisites
+- Node.js 18+
+- Appwrite Cloud account or self-hosted instance
+- OpenAI API key
 
-- Enter all the necessary details as per the template.
+### 1. Setup
+```bash
+git clone <repository-url> promptpilot
+cd promptpilot
+npm install
+cp .env.example .env.local
+```
 
-- Create a pull request.
+### 2. Configure Appwrite
+1. Create new Appwrite project
+2. Update `.env.local` with your credentials
+3. Run database setup: `node scripts/setup-database.js`
+4. Deploy Appwrite Functions (see DEPLOYMENT.md)
 
-### Step 3: Submit PR details on the hackathon website
+### 3. Run Development Server
+```bash
+npm run dev
+# Open http://localhost:3000
+```
 
-- Head back to the [hackathon website](https://apwr.dev/hf2025-hackathon).
+## 📖 Documentation
 
-- Visit the hacker dashboard, and create a submission.
+- [🏗️ **System Architecture**](./ARCHITECTURE.md) - Detailed technical architecture
+- [🚀 **Deployment Guide**](./DEPLOYMENT.md) - Complete deployment instructions
+- [🎯 **Demo Workflow**](./demo/sample-workflow.json) - Example RSS → AI → Webhook workflow
 
-## Judging Criteria
+## 🎪 Demo Workflow
 
-Projects will be judged based on the following criteria:
+The included demo showcases a complete AI automation pipeline:
 
-  1. **Impact of idea**
-    - Usefulness of the project in a real-world scenario.
-    - Completeness of the features implemented.
+1. **RSS Feed Fetcher** → Retrieves latest articles
+2. **AI Summarizer** → Generates concise summaries using GPT
+3. **Image Generator** → Creates visual summaries with DALL-E
+4. **Webhook Notifier** → Sends results to external systems
 
-  2. **Creativity in design**
-    - The overall look, layout, color usage, and positioning in the application.
+**Demo Flow**: `RSS Feed → AI Summarization → Image Generation → Webhook Notification`
 
-  3. **Technical execution**
-    - `(clean code, proper naming conventions, use of linter);`
-    - Use of engineering best practices.
+## 🏆 Appwrite Integration Depth
 
-  4. **Usage of Appwrite**
-    - Is Appwrite central to the functioning of your project?
-    - How many and how well the different Appwrite services have been leveraged
+PromptPilot showcases comprehensive use of Appwrite's service ecosystem:
 
-## Rules and Code of Conduct
+### Core Services
+- **Authentication**: Complete user lifecycle management
+- **Databases**: Multi-collection data architecture with relationships
+- **Functions**: Custom AI operations with external API integration
+- **Storage**: File management with proper permissions
+- **Realtime**: Live collaborative features
 
-All participants must agree to the [Rules](RULES.md) and [Code of Conduct](CODE_OF_CONDUCT.md) to participate in the Hackathon.
+### Advanced Features  
+- **Teams**: Workspace collaboration and sharing
+- **Permissions**: Fine-grained access control
+- **Scheduled Functions**: Automated workflow execution
+- **Function Chaining**: Complex workflow orchestration
+- **Real-time Subscriptions**: Live execution monitoring
+
+## 🎯 Hackathon Highlights
+
+### Innovation
+- **First visual AI workflow builder** optimized for Appwrite
+- **Real-time collaborative editing** with live execution visualization
+- **Deep platform integration** - every major feature powered by Appwrite
+
+### Technical Excellence
+- **Production-ready architecture** with comprehensive error handling
+- **Scalable design** supporting enterprise features
+- **Clean code practices** with TypeScript and modern tooling
+
+### User Experience
+- **Intuitive visual interface** - no coding required
+- **Real-time feedback** with animated execution progress
+- **Comprehensive demo** showing practical AI automation
+
+## 🎬 Demo Script (2 Minutes)
+
+1. **Landing Page** (15s) - Show platform overview
+2. **Workflow Builder** (45s) - Demonstrate visual building
+3. **Real-time Execution** (45s) - Run demo workflow with live updates
+4. **Results** (15s) - Show generated content and webhook delivery
+
+## 📁 Project Structure
+
+```
+promptpilot/
+├── src/
+│   ├── app/                 # Next.js app directory
+│   ├── components/          # React components
+│   │   ├── landing/         # Landing page components
+│   │   └── workflow/        # Workflow builder components
+│   ├── lib/                 # Appwrite configuration & utilities
+│   ├── types/               # TypeScript type definitions
+│   └── styles/              # Global styles and themes
+├── functions/               # Appwrite Functions
+│   ├── ai-text-operations/  # AI text processing
+│   └── workflow-executor/   # Workflow execution engine
+├── scripts/                 # Database setup and utilities
+├── demo/                    # Demo workflow and examples
+└── docs/                    # Documentation
+```
+
+## 🤝 Contributing
+
+This project was built for the Appwrite Hacktoberfest 2025 Hackathon. Contributions, issues, and feature requests are welcome!
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Appwrite Team** for the amazing backend platform
+- **React Flow** for the excellent workflow visualization library
+- **OpenAI** for powerful AI capabilities
+- **Vercel** for seamless deployment experience
+
+---
+
+**Built with ❤️ for Appwrite Hacktoberfest 2025**
+
+*Democratizing AI automation, one visual workflow at a time* 🧩✨

@@ -1,0 +1,17 @@
+{
+  "name": "ai-text-operations",
+  "version": "1.0.0",
+  "description": "Appwrite Function for AI text operations",
+  "main": "src/main.js",
+  "scripts": {
+    "build": "echo 'No build needed'",
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "node-appwrite": "^12.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
