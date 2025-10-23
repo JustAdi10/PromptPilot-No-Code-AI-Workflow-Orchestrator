@@ -135,19 +135,17 @@ export function HeroScene({ className = "" }: HeroSceneProps) {
   return (
     <div className={`relative w-full h-full ${className}`}>
       {/* 3D Canvas */}
-      <Canvas
-        className="absolute inset-0"
-        gl={{ 
-          antialias: true, 
-          alpha: true,
-          powerPreference: "high-performance"
+            <Canvas
+        camera={{ 
+          position: [8, 6, 8], 
+          fov: 50
         }}
-        dpr={[1, 2]}
-        performance={{ min: 0.8 }}
+        style={{ 
+          height: '100vh',
+          background: 'transparent' 
+        }}
       >
-        <Suspense fallback={null}>
-          <SceneContents />
-        </Suspense>
+        <SceneContents />
       </Canvas>
       
       {/* Loading overlay */}
@@ -193,8 +191,8 @@ export function HeroScene({ className = "" }: HeroSceneProps) {
                 y: Math.random() * window.innerHeight 
               }}
               animate={{
-                y: [null, -20, null],
-                opacity: [0.3, 0.7, 0.3],
+                y: [0, -20, 0],
+                opacity: [0.4, 1, 0.4],
               }}
               transition={{
                 duration: 3 + Math.random() * 2,

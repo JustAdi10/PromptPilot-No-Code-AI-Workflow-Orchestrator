@@ -13,7 +13,7 @@ import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
 // Dynamically import the 3D scene to avoid SSR issues
-const HeroScene = dynamic(() => import('@/components/3d/HeroScene').then(mod => ({ default: mod.HeroScene })), {
+const BasicThreeScene = dynamic(() => import('@/components/3d/BasicThreeScene').then(mod => ({ default: mod.BasicThreeScene })), {
   ssr: false,
   loading: () => (
     <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
@@ -60,7 +60,7 @@ export function LandingPage() {
           </div>
         </div>
       }>
-        <HeroScene />
+        <BasicThreeScene />
       </Suspense>
       
       {/* Navigation - overlay on top of 3D scene */}
