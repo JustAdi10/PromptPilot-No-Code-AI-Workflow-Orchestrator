@@ -9,6 +9,21 @@ import {
   PlayIcon
 } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the 3D scene to avoid SSR issues
+const HeroScene = dynamic(() => import('@/components/3d/HeroScene').then(mod => ({ default: mod.HeroScene })), {
+  ssr: false,
+  loading: () => (
+    <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+      <div className="text-center">
+        <div className="w-16 h-16 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <p className="text-white text-lg">Loading 3D Experience...</p>
+      </div>
+    </div>
+  )
+});
 
 const features = [
   {
@@ -36,11 +51,20 @@ const features = [
 export function LandingPage() {
   return (
     <div className="relative min-h-screen">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900" />
+      {/* 3D Hero Scene - Full viewport immersive experience */}
+      <Suspense fallback={
+        <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-white text-lg">Loading 3D Experience...</p>
+          </div>
+        </div>
+      }>
+        <HeroScene />
+      </Suspense>
       
-      {/* Navigation */}
-      <nav className="relative z-10 flex items-center justify-between p-6 lg:px-8">
+      {/* Navigation - overlay on top of 3D scene */}
+      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6 lg:px-8">
         <div className="flex lg:flex-1">
           <motion.div 
             className="flex items-center space-x-2"
@@ -78,14 +102,14 @@ export function LandingPage() {
         </motion.div>
       </nav>
 
-      {/* Hero section */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:px-8 lg:pt-32">
-        <div className="mx-auto max-w-2xl text-center">
+      {/* Hero content - centered overlay */}
+      <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+        <div className="mx-auto max-w-2xl text-center px-6">
           <motion.h1 
-            className="text-4xl font-bold tracking-tight text-white sm:text-6xl"
+            className="text-4xl font-bold tracking-tight text-white sm:text-6xl drop-shadow-2xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 1.5 }}
           >
             Build AI Workflows{' '}
             <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
@@ -94,54 +118,36 @@ export function LandingPage() {
           </motion.h1>
           
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-300"
+            className="mt-6 text-lg leading-8 text-gray-200 drop-shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 1.7 }}
           >
             The no-code AI automation platform that lets you create powerful workflows 
             by connecting AI tasks, APIs, and actions with simple drag-and-drop blocks.
           </motion.p>
           
           <motion.div 
-            className="mt-10 flex items-center justify-center gap-x-6"
+            className="mt-10 flex items-center justify-center gap-x-6 pointer-events-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.8, delay: 1.9 }}
           >
             <Link
               href="/auth/register"
-              className="group relative inline-flex items-center gap-x-2 rounded-lg bg-neon-gradient px-6 py-3 text-sm font-semibold text-white shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan transition-all duration-200"
+              className="group relative inline-flex items-center gap-x-2 rounded-lg bg-neon-gradient px-6 py-3 text-sm font-semibold text-white shadow-2xl hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neon-cyan transition-all duration-200"
             >
               Start Building
               <ArrowRightIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/demo"
-              className="text-sm font-semibold leading-6 text-gray-300 hover:text-white transition-colors"
+              className="text-sm font-semibold leading-6 text-gray-200 hover:text-white transition-colors backdrop-blur-sm"
             >
               View Demo <span aria-hidden="true">→</span>
             </Link>
           </motion.div>
         </div>
-
-        {/* Demo video placeholder */}
-        <motion.div 
-          className="mt-16 flow-root sm:mt-24"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.9 }}
-        >
-          <div className="glass-card rounded-xl p-2 ring-1 ring-white/10 lg:rounded-2xl lg:p-4">
-            <div className="aspect-video rounded-md bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center">
-              <div className="text-center">
-                <PlayIcon className="w-16 h-16 text-neon-cyan mx-auto mb-4" />
-                <p className="text-lg font-medium text-white">Workflow Builder Demo</p>
-                <p className="text-sm text-gray-400">Coming soon</p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
 
       {/* Features section */}
