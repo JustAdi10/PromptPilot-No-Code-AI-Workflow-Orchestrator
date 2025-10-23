@@ -1,4 +1,4 @@
-import { Client, Databases, Storage, Functions, Account, Teams, Realtime } from 'appwrite';
+import { Client, Databases, Storage, Functions, Account, Teams } from 'appwrite';
 
 // Appwrite configuration
 export const APPWRITE_CONFIG = {
@@ -42,12 +42,17 @@ export const databases = new Databases(appwriteClient);
 export const storage = new Storage(appwriteClient);
 export const functions = new Functions(appwriteClient);
 export const teams = new Teams(appwriteClient);
-export const realtime = new Realtime(appwriteClient);
+
+// Realtime is accessed directly through the client
+export const realtime = appwriteClient;
 
 // Server-side client (for API routes and server actions)
 export const createServerClient = () => {
-  return new Client()
+  const client = new Client()
     .setEndpoint(APPWRITE_CONFIG.endpoint)
-    .setProject(APPWRITE_CONFIG.projectId)
-    .setKey(process.env.APPWRITE_API_KEY || '');
+    .setProject(APPWRITE_CONFIG.projectId);
+    
+  // For server-side operations, we'll handle API key authentication 
+  // in the individual API route handlers or use session-based auth
+  return client;
 };
