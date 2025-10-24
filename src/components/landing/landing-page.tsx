@@ -12,13 +12,16 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
+// Import test component to debug CSS issues
+import { TestStyles } from '@/components/test/TestStyles';
+
 // Dynamically import the 3D scene to avoid SSR issues
 const BasicThreeScene = dynamic(() => import('@/components/3d/BasicThreeScene').then(mod => ({ default: mod.BasicThreeScene })), {
   ssr: false,
   loading: () => (
     <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-16 h-16 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+        <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
         <p className="text-white text-lg">Loading 3D Experience...</p>
       </div>
     </div>
@@ -53,10 +56,19 @@ export function LandingPage() {
     <div className="relative min-h-screen">
       {/* 3D Hero Scene - Full viewport immersive experience */}
       <Suspense fallback={
-        <div className="h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
+        <div 
+          className="h-screen flex items-center justify-center"
+          style={{ 
+            background: 'linear-gradient(135deg, #1e293b 0%, #7c3aed 50%, #1e293b 100%)',
+            minHeight: '100vh' 
+          }}
+        >
           <div className="text-center">
-            <div className="w-16 h-16 border-4 border-neon-cyan border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-white text-lg">Loading 3D Experience...</p>
+            <div 
+              className="w-16 h-16 border-4 border-t-transparent rounded-full animate-spin mx-auto mb-4"
+              style={{ borderColor: '#00E0FF', borderTopColor: 'transparent' }}
+            ></div>
+            <p style={{ color: 'white', fontSize: '18px' }}>Loading 3D Experience...</p>
           </div>
         </div>
       }>

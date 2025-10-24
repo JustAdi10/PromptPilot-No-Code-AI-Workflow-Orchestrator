@@ -2,10 +2,19 @@
 module.exports = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  safelist: [
+    'text-neon-cyan',
+    'text-neon-purple',
+    'bg-neon-cyan',
+    'bg-neon-purple',
+    'border-neon-cyan',
+    'border-neon-purple',
+    'glass-card',
   ],
   theme: {
     container: {
@@ -51,13 +60,11 @@ module.exports = {
           foreground: 'hsl(var(--card-foreground))',
         },
         // PromptPilot Bruno Simon Inspired Colors
-        neon: {
-          cyan: '#00E0FF',
-          purple: '#9B51E0',
-          emerald: '#10B981',
-          amber: '#F59E0B',
-          glow: 'rgba(0,224,255,0.3)',
-        },
+        'neon-cyan': '#00E0FF',
+        'neon-purple': '#9B51E0',
+        'neon-emerald': '#10B981',
+        'neon-amber': '#F59E0B',
+        'neon-glow': 'rgba(0,224,255,0.3)',
         slate: {
           850: '#1E293B',
           900: '#0F172A',
