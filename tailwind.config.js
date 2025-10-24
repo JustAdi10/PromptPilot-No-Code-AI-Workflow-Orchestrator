@@ -8,13 +8,22 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   safelist: [
-    'text-neon-cyan',
-    'text-neon-purple',
-    'bg-neon-cyan',
-    'bg-neon-purple',
-    'border-neon-cyan',
-    'border-neon-purple',
-    'glass-card',
+    'text-brand-orange',
+    'text-brand-orange-light',
+    'text-brand-orange-dark',
+    'bg-brand-orange',
+    'bg-brand-orange-light',
+    'bg-brand-orange-dark',
+    'border-brand-orange',
+    'shadow-glow-orange',
+    'shadow-glow-orange-strong',
+    'bg-dark-bg',
+    'bg-dark-surface',
+    'bg-dark-card',
+    'border-dark-border',
+    'text-dark-text',
+    'text-dark-text-secondary',
+    'text-dark-text-muted',
   ],
   theme: {
     container: {
@@ -59,28 +68,19 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        // PromptPilot Bruno Simon Inspired Colors
-        'neon-cyan': '#00E0FF',
-        'neon-purple': '#9B51E0',
-        'neon-emerald': '#10B981',
-        'neon-amber': '#F59E0B',
-        'neon-glow': 'rgba(0,224,255,0.3)',
-        slate: {
-          850: '#1E293B',
-          900: '#0F172A',
-          950: '#020617',
-        },
-        // 3D Scene Colors
-        scene: {
-          bg: '#0A0F18',
-          surface: '#0F1419',
-          glass: 'rgba(255, 255, 255, 0.1)',
-          text: {
-            primary: '#E4E7EB',
-            secondary: '#5A6B7C',
-            muted: '#394A5A',
-          }
-        },
+        // PromptPilot Black, White & Orange Theme
+        'brand-orange': '#FF6B35',
+        'brand-orange-light': '#FF8A5C',
+        'brand-orange-dark': '#E55A2B',
+        'orange-glow': 'rgba(255, 107, 53, 0.3)',
+        // Dark theme colors
+        'dark-bg': '#000000',
+        'dark-surface': '#111111',
+        'dark-card': '#1A1A1A',
+        'dark-border': '#2A2A2A',
+        'dark-text': '#FFFFFF',
+        'dark-text-secondary': '#D1D5DB',
+        'dark-text-muted': '#6B7280',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -136,7 +136,8 @@ module.exports = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'neon-gradient': 'linear-gradient(135deg, #00D4FF 0%, #8B5CF6 100%)',
+        'orange-gradient': 'linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%)',
+        'dark-gradient': 'linear-gradient(135deg, #000000 0%, #1A1A1A 100%)',
         'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
       },
       backdropBlur: {
@@ -144,8 +145,8 @@ module.exports = {
       },
       // 3D and depth utilities
       boxShadow: {
-        'glow-cyan': '0 0 20px rgba(0, 224, 255, 0.15)',
-        'glow-purple': '0 0 20px rgba(155, 81, 224, 0.15)',
+        'glow-orange': '0 0 20px rgba(255, 107, 53, 0.3)',
+        'glow-orange-strong': '0 0 40px rgba(255, 107, 53, 0.5)',
         'depth': '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
         'card-3d': '0 10px 25px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
         'inner-glow': 'inset 0 0 20px rgba(0, 224, 255, 0.1)',
@@ -158,6 +159,7 @@ module.exports = {
       },
       // Typography
       fontFamily: {
+        'sans': ['Poppins', 'system-ui', '-apple-system', 'sans-serif'],
         'mono': ['JetBrains Mono', 'Monaco', 'Consolas', 'monospace'],
       },
     },

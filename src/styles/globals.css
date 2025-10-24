@@ -53,13 +53,13 @@
     @apply backdrop-blur-sm bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-all duration-200;
   }
   
-  /* Neon glow effects */
-  .neon-glow {
-    @apply shadow-[0_0_20px_rgba(0,212,255,0.3)];
+  /* Orange glow effects */
+  .orange-glow {
+    @apply shadow-glow-orange;
   }
   
-  .neon-glow-strong {
-    @apply shadow-[0_0_40px_rgba(0,212,255,0.6)];
+  .orange-glow-strong {
+    @apply shadow-glow-orange-strong;
   }
   
   /* Workflow node styles */
@@ -68,7 +68,7 @@
   }
   
   .workflow-node.executing {
-    @apply neon-glow-strong animate-glow-pulse border-neon-cyan/50;
+    @apply orange-glow-strong animate-glow-pulse border-brand-orange/50;
   }
   
   .workflow-node.completed {
@@ -94,7 +94,7 @@
   
   /* Flow edge animations */
   .react-flow__edge.executing {
-    stroke: #00D4FF;
+    stroke: #FF6B35;
     stroke-width: 3;
     animation: flow-animate 2s linear infinite;
   }
@@ -116,11 +116,11 @@
 }
 
 .react-flow__handle.source {
-  @apply bg-neon-cyan/70;
+  @apply bg-brand-orange/70;
 }
 
 .react-flow__handle.target {
-  @apply bg-neon-purple/70;
+  @apply bg-brand-orange/70;
 }
 
 .react-flow__controls {
@@ -128,7 +128,7 @@
 }
 
 .react-flow__controls button {
-  @apply glass-button border-none text-white hover:text-neon-cyan;
+  @apply glass-button border-none text-white hover:text-brand-orange;
 }
 
 .react-flow__minimap {

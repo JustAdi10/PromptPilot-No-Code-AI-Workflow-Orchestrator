@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import '../styles/globals.css';
 import { AppwriteProvider } from '@/lib/providers/appwrite-provider';
 import { Toaster } from 'sonner';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'PromptPilot - No-Code AI Workflow Orchestrator',
@@ -38,9 +42,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-slate-900 text-white antialiased`}>
+      <body className={`${poppins.className} bg-dark-bg text-white antialiased`}>
         <AppwriteProvider>
-          <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          <div className="min-h-screen bg-dark-bg">
             {children}
           </div>
           <Toaster 
